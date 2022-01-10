@@ -8,6 +8,9 @@ const app = express();
 const home = require("./src/routes/home")
 
 
+//바디파서
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 //앱 세팅
 app.set("views","./src/views");
