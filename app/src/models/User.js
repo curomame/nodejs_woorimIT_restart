@@ -9,12 +9,12 @@ class User {
 
   login() {
 
-    const body = this.body;
+    const client = this.body;
 
-    const {id, pwd} = UserStorage.getUserInfo(body.id);
+    const {id, pwd} = UserStorage.getUserInfo(client.id);
     
     if(id){
-      if(id === body.id && body.pwd){
+      if(id === client.id && client.pwd){
           return {
             success : true
           }
@@ -22,6 +22,13 @@ class User {
       return {success : false, msg : "비밀번호가 틀렸습니다."};
     }
     return {success : false, msg : "해당 아이디가 없습니다."}
+  }
+
+
+  register () {
+    const client = this.body;
+    const response = UserStorage.save(client);
+    return response;
   }
 
 }
