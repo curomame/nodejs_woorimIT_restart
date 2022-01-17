@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mysql": "^2.18.1"
   },
   "name": "login-lecture",
   "version": "1.0.0",
@@ -9,9 +10,8 @@
   "bin": {
     "login-lecture": "bin/www.js"
   },
-  "devDependencies": {},
   "scripts": {
-    "start":"nodemon ./bin/www.js",
+    "start": "nodemon ./bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

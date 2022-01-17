@@ -11,17 +11,17 @@ class User {
 
     const client = this.body;
 
-    const {id, pwd} = await UserStorage.getUserInfo(client.id);
+    await UserStorage.getUserInfo(client.id);
     
-    if(id){
-      if(id === client.id && client.pwd){
-          return {
-            success : true
-          }
-      }
-      return {success : false, msg : "비밀번호가 틀렸습니다."};
-    }
-    return {success : false, msg : "해당 아이디가 없습니다."}
+    // if(id){
+    //   if(id === client.id && client.pwd){
+    //       return {
+    //         success : true
+    //       }
+    //   }
+    //   return {success : false, msg : "비밀번호가 틀렸습니다."};
+    // }
+    // return {success : false, msg : "해당 아이디가 없습니다."}
   }
 
 
