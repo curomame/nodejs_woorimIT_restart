@@ -6,43 +6,31 @@ const db = require('../config/db')
 
 class UserStorage {
 
-  static #getUsers(data, isAll, fields){
-    const users = JSON.parse(data);
-
-    if (isAll) return users;
-
-    const newUsers = fields.reduce((newUsers, filed)=>{
-      if(users.hasOwnProperty(filed)){
-        newUsers[filed] = users[filed];
-      }
-      return newUsers;
-      
-    },{});
-    return newUsers;
-  }
-
-  static getUsers(isAll, ...fields){
-
-
-
-  }
-
   static getUserInfo(id){
 
+    const query = 'SELECT * FROM users WHERE id = ?;';
 
-    db.query("SELECT * FROM users WHERE id = ?",[id], (err, data) => {
-      console.log(data);
-    })
-
-
+  return new Promise((resolve, reject) => {
+    db.query(query,[id],(err,data) => {
+      if (err) reject(`${err}`);
+      resolve(data[0]);
+    });
+  });
+  
   }
   
 
-static #getUserInfo(data, id) {
-
-}
 
   static async save(userInfo){
+
+    const query = 'INSERT INTO users(id, name, pwd) VALUES(?,?,?);';
+
+  return new Promise((resolve, reject) => {
+    db.query(query,[userInfo.id, userInfo.name, userInfo.pwd],(err) => {
+      if (err) reject(`${err}`)
+      resolve({success : true});
+    });
+  });
 
   }
 }
